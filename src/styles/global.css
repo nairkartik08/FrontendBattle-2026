@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap");
+@import "./tokens.css";
+@import "../animations/motion.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-arctic);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::selection {
+  color: var(--color-oceanic);
+  background: var(--color-forsythia);
+}
+
+.hero-grid::before {
+  position: absolute;
+  inset: 8% -12% auto auto;
+  width: min(42rem, 75vw);
+  height: min(42rem, 75vw);
+  content: "";
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 200, 1, 0.5), transparent 36%),
+    radial-gradient(circle at 70% 65%, rgba(255, 153, 50, 0.4), transparent 38%),
+    radial-gradient(circle, rgba(17, 76, 90, 0.18), transparent 68%);
+  filter: blur(4px);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.hero-grid::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image:
+    linear-gradient(rgba(17, 76, 90, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 76, 90, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+  pointer-events: none;
+}
+
+.hero-panel {
+  transform: perspective(1200px) rotateX(2deg) rotateY(-4deg);
+}
+
+img,
+svg {
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-forsythia);
+  outline-offset: 4px;
+}
