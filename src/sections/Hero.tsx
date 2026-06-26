@@ -17,7 +17,7 @@ const activity = [
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-arctic pt-20" aria-labelledby="hero-title">
-      <section className="hero-grid relative mx-auto grid min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-20">
+      <div className="hero-grid relative mx-auto grid min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-20">
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 rounded-[8px] border border-nocturnal/15 bg-white/55 px-3 py-2 text-sm font-bold text-nocturnal shadow-sm backdrop-blur">
             <Icon name="arrowTrendingUp" className="h-4 w-4" />
@@ -115,7 +115,7 @@ export function Hero() {
             <Icon name="chevronDown" className="h-4 w-4 animate-bob" />
           </span>
         </a>
-      </section>
+      </div>
     </section>
   );
 }

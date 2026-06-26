@@ -24,6 +24,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  color: var(--color-arctic);
+  background: var(--color-oceanic);
+  border-radius: 8px;
+  transform: translateY(-150%);
+  transition: transform 180ms var(--ease-premium);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 body::selection {
   color: var(--color-oceanic);
   background: var(--color-forsythia);
@@ -58,6 +75,19 @@ body::selection {
 
 .hero-panel {
   transform: perspective(1200px) rotateX(2deg) rotateY(-4deg);
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-forsythia), var(--color-saffron));
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
 }
 
 img,
