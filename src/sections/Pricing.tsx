@@ -37,6 +37,62 @@ const BillingNote = memo(function BillingNote() {
   );
 });
 
+const BillingToggle = memo(function BillingToggle() {
+  const { billing } = usePricingSnapshot();
+
+  const updateBilling = useCallback((b: BillingCycle) => {
+    setBilling(b);
+  }, []);
+
+  return (
+    <div className="grid grid-cols-2 rounded-[8px] bg-mint p-1">
+      {billingCycles.map((cycle) => (
+        <button
+          key={cycle.id}
+          type="button"
+          onClick={() => updateBilling(cycle.id)}
+          className={cn(
+            "rounded-[6px] px-3 py-2 text-sm font-bold transition-all duration-200 ease-premium",
+            billing === cycle.id ? "bg-oceanic text-arctic shadow-sm" : "text-nocturnal/72 hover:bg-white/60 hover:text-nocturnal",
+          )}
+          aria-pressed={billing === cycle.id}
+        >
+          {cycle.label}
+        </button>
+      ))}
+    </div>
+  );
+});
+
+const CurrencyToggle = memo(function CurrencyToggle() {
+  const { currency } = usePricingSnapshot();
+
+  const updateCurrency = useCallback((c: CurrencyCode) => {
+    setCurrency(c);
+  }, []);
+
+  return (
+    <div className="grid grid-cols-3 rounded-[8px] bg-mint p-1">
+      {currencyOptions.map((curr) => (
+        <button
+          key={curr.code}
+          type="button"
+          onClick={() => updateCurrency(curr.code)}
+          className={cn(
+            "rounded-[6px] px-3 py-2 text-sm font-bold transition-all duration-200 ease-premium",
+            currency === curr.code
+              ? "bg-forsythia text-oceanic shadow-sm"
+              : "text-nocturnal/72 hover:bg-white/60 hover:text-nocturnal",
+          )}
+          aria-pressed={currency === curr.code}
+        >
+          {curr.label}
+        </button>
+      ))}
+    </div>
+  );
+});
+
 const PricingCard = memo(function PricingCard({
   tierId,
 }: {
@@ -47,8 +103,8 @@ const PricingCard = memo(function PricingCard({
   return (
     <article
       className={cn(
-        "flex h-full flex-col rounded-[8px] border p-5 transition duration-[360ms] ease-structure",
-        tier.highlight ? "border-forsythia bg-white shadow-panel" : "border-nocturnal/10 bg-white/58",
+        "group flex h-full flex-col rounded-[8px] border p-5 transition-all duration-[360ms] ease-structure will-change-transform hover:-translate-y-1.5",
+        tier.highlight ? "border-forsythia bg-white shadow-panel hover:shadow-glow" : "border-nocturnal/10 bg-white/58 hover:border-nocturnal/20 hover:bg-white/80 hover:shadow-panel",
       )}
     >
       <div className="flex items-start justify-between gap-4">
@@ -57,7 +113,7 @@ const PricingCard = memo(function PricingCard({
           <p className="mt-3 min-h-14 text-sm leading-6 text-nocturnal/76">{tier.summary}</p>
         </div>
         {tier.highlight ? (
-          <span className="rounded-[8px] bg-forsythia px-3 py-1 font-mono text-xs font-bold uppercase text-oceanic">
+          <span className="rounded-[8px] bg-forsythia px-3 py-1 font-mono text-xs font-bold uppercase text-oceanic shadow-sm">
             Popular
           </span>
         ) : null}
@@ -72,7 +128,7 @@ const PricingCard = memo(function PricingCard({
       <ul className="mt-7 space-y-3">
         {tier.features.map((feature) => (
           <li key={feature} className="flex gap-3 text-sm font-semibold text-nocturnal/78">
-            <Icon name="chevronUpSolid" className="mt-0.5 h-4 w-4 rotate-90" />
+            <Icon name="chevronUpSolid" className="mt-0.5 h-4 w-4 rotate-90 text-oceanic/70 transition-transform duration-[360ms] group-hover:translate-x-0.5 group-hover:text-oceanic" />
             <span>{feature}</span>
           </li>
         ))}
@@ -80,23 +136,13 @@ const PricingCard = memo(function PricingCard({
 
       <ButtonLink href="#cta" variant={tier.highlight ? "primary" : "secondary"} className="mt-8 w-full">
         Choose {tier.name}
-        <Icon name="chevronRight" className={cn("h-4 w-4", tier.highlight ? "invert" : "")} />
+        <Icon name="chevronRight" className={cn("h-4 w-4 transition-transform duration-[360ms] group-hover:translate-x-1", tier.highlight ? "invert" : "")} />
       </ButtonLink>
     </article>
   );
 });
 
 export function Pricing() {
-  const pricingState = usePricingSnapshot();
-
-  const updateBilling = useCallback((billing: BillingCycle) => {
-    setBilling(billing);
-  }, []);
-
-  const updateCurrency = useCallback((currency: CurrencyCode) => {
-    setCurrency(currency);
-  }, []);
-
   return (
     <section id="pricing" className="bg-mint/45 px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="pricing-title">
       <div className="mx-auto max-w-7xl">
@@ -112,48 +158,16 @@ export function Pricing() {
             </p>
           </div>
 
-          <div className="rounded-[8px] border border-nocturnal/10 bg-white/62 p-3 backdrop-blur">
+          <div className="rounded-[8px] border border-nocturnal/10 bg-white/62 p-3 shadow-sm backdrop-blur">
             <div className="grid gap-3 sm:grid-cols-2">
               <fieldset>
                 <legend className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-nocturnal/65">Billing</legend>
-                <div className="grid grid-cols-2 rounded-[8px] bg-mint p-1">
-                  {billingCycles.map((cycle) => (
-                    <button
-                      key={cycle.id}
-                      type="button"
-                      onClick={() => updateBilling(cycle.id)}
-                      className={cn(
-                        "rounded-[6px] px-3 py-2 text-sm font-bold transition duration-200 ease-premium",
-                        pricingState.billing === cycle.id ? "bg-oceanic text-arctic" : "text-nocturnal/72 hover:bg-white/60",
-                      )}
-                      aria-pressed={pricingState.billing === cycle.id}
-                    >
-                      {cycle.label}
-                    </button>
-                  ))}
-                </div>
+                <BillingToggle />
               </fieldset>
 
               <fieldset>
                 <legend className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-nocturnal/65">Currency</legend>
-                <div className="grid grid-cols-3 rounded-[8px] bg-mint p-1">
-                  {currencyOptions.map((currency) => (
-                    <button
-                      key={currency.code}
-                      type="button"
-                      onClick={() => updateCurrency(currency.code)}
-                      className={cn(
-                        "rounded-[6px] px-3 py-2 text-sm font-bold transition duration-200 ease-premium",
-                        pricingState.currency === currency.code
-                          ? "bg-forsythia text-oceanic"
-                          : "text-nocturnal/72 hover:bg-white/60",
-                      )}
-                      aria-pressed={pricingState.currency === currency.code}
-                    >
-                      {currency.label}
-                    </button>
-                  ))}
-                </div>
+                <CurrencyToggle />
               </fieldset>
             </div>
           </div>

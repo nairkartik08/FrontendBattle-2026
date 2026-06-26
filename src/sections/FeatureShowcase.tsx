@@ -1,9 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import { Icon } from "../components/Icon";
 import { features } from "../constants/features";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 import { cn } from "../utils/cn";
-
 const BentoCard = memo(function BentoCard({
   feature,
   active,
@@ -48,7 +46,6 @@ const BentoCard = memo(function BentoCard({
 
 export function FeatureShowcase() {
   const [activeIndex, setActiveIndex] = useState(2);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
   const activate = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
@@ -65,58 +62,56 @@ export function FeatureShowcase() {
           </p>
         </div>
 
-        {isDesktop ? (
-          <div className="mt-10 grid auto-rows-[minmax(15rem,auto)] grid-cols-3 gap-4">
-            {features.map((feature, index) => (
-              <BentoCard
-                key={feature.id}
-                feature={feature}
-                active={activeIndex === index}
-                onActivate={() => activate(index)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-10 space-y-3">
-            {features.map((feature, index) => {
-              const open = activeIndex === index;
+        <div className="mt-10 hidden auto-rows-[minmax(15rem,auto)] grid-cols-3 gap-4 md:grid">
+          {features.map((feature, index) => (
+            <BentoCard
+              key={feature.id}
+              feature={feature}
+              active={activeIndex === index}
+              onActivate={() => activate(index)}
+            />
+          ))}
+        </div>
 
-              return (
-                <article key={feature.id} className="overflow-hidden rounded-[8px] border border-nocturnal/10 bg-white/60">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
-                    aria-expanded={open}
-                    aria-controls={`${feature.id}-panel`}
-                    onClick={() => activate(index)}
-                  >
-                    <span>
-                      <span className="block font-mono text-xs font-bold uppercase tracking-[0.18em] text-nocturnal/65">
-                        {feature.eyebrow}
-                      </span>
-                      <span className="mt-1 block text-lg font-bold text-oceanic">{feature.title}</span>
+        <div className="mt-10 space-y-3 md:hidden">
+          {features.map((feature, index) => {
+            const open = activeIndex === index;
+
+            return (
+              <article key={feature.id} className="overflow-hidden rounded-[8px] border border-nocturnal/10 bg-white/60">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
+                  aria-expanded={open}
+                  aria-controls={`${feature.id}-panel`}
+                  onClick={() => activate(index)}
+                >
+                  <span>
+                    <span className="block font-mono text-xs font-bold uppercase tracking-[0.18em] text-nocturnal/65">
+                      {feature.eyebrow}
                     </span>
-                    <Icon name={open ? "chevronUp" : "chevronDown"} className="h-5 w-5 shrink-0" />
-                  </button>
-                  <div
-                    id={`${feature.id}-panel`}
-                    className={cn(
-                      "grid transition-[grid-template-rows] duration-[360ms] ease-structure",
-                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-                    )}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="border-t border-nocturnal/10 px-4 py-5">
-                        <p className="text-sm leading-6 text-nocturnal/76">{feature.description}</p>
-                        <p className="mt-4 font-mono text-lg font-bold text-oceanic">{feature.stat}</p>
-                      </div>
+                    <span className="mt-1 block text-lg font-bold text-oceanic">{feature.title}</span>
+                  </span>
+                  <Icon name={open ? "chevronUp" : "chevronDown"} className="h-5 w-5 shrink-0 transition-transform duration-[360ms]" />
+                </button>
+                <div
+                  id={`${feature.id}-panel`}
+                  className={cn(
+                    "grid transition-[grid-template-rows] duration-[360ms] ease-structure",
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <div className="border-t border-nocturnal/10 px-4 py-5">
+                      <p className="text-sm leading-6 text-nocturnal/76">{feature.description}</p>
+                      <p className="mt-4 font-mono text-lg font-bold text-oceanic">{feature.stat}</p>
                     </div>
                   </div>
-                </article>
-              );
-            })}
-          </div>
-        )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
