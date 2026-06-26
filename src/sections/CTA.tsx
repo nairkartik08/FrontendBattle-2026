@@ -3,9 +3,10 @@ import { Icon } from "../components/Icon";
 
 export function CTA() {
   return (
-    <section id="cta" className="bg-arctic px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="cta-title">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[8px] bg-oceanic px-5 py-12 text-arctic shadow-panel sm:px-8 lg:px-12">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
+    <section id="cta" className="bg-arctic px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="cta-title">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[8px] bg-oceanic px-5 py-12 text-arctic shadow-panel sm:px-8 lg:px-12">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-mint/10 via-oceanic to-oceanic" />
+        <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
           <div>
             <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-forsythia">Launch Control</p>
             <h2 id="cta-title" className="mt-4 max-w-3xl font-mono text-3xl font-bold leading-tight sm:text-5xl">

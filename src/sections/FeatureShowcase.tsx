@@ -17,7 +17,7 @@ const BentoCard = memo(function BentoCard({
       onMouseEnter={onActivate}
       onFocus={onActivate}
       className={cn(
-        "group relative flex min-h-64 flex-col justify-between overflow-hidden rounded-[8px] border p-5 transition duration-[360ms] ease-structure will-change-transform",
+        "group relative flex flex-col gap-6 overflow-hidden rounded-[8px] border p-5 transition duration-[360ms] ease-structure will-change-transform",
         feature.className,
         active
           ? "border-forsythia bg-oceanic text-arctic shadow-panel"
@@ -35,7 +35,7 @@ const BentoCard = memo(function BentoCard({
           <Icon name={feature.icon} className={cn("h-5 w-5", active ? "invert" : "")} />
         </span>
       </div>
-      <div className="relative z-10 mt-8">
+      <div className="relative z-10 mt-auto">
         <p className={cn("max-w-xl text-sm leading-6", active ? "text-arctic/78" : "text-nocturnal/76")}>{feature.description}</p>
         <p className={cn("mt-6 font-mono text-lg font-bold", active ? "text-forsythia" : "text-oceanic")}>{feature.stat}</p>
       </div>
@@ -49,7 +49,7 @@ export function FeatureShowcase() {
   const activate = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
-    <section id="features" className="bg-arctic px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="features-title">
+    <section id="features" className="bg-arctic px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="features-title">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-nocturnal/70">AI Features</p>

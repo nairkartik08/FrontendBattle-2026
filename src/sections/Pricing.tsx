@@ -119,13 +119,13 @@ const PricingCard = memo(function PricingCard({
         ) : null}
       </div>
 
-      <div className="mt-7 flex items-end gap-2">
+      <div className="mt-6 flex items-end gap-2">
         <PriceText tierId={tierId} />
         <span className="pb-2 text-sm font-semibold text-nocturnal/65">/mo</span>
       </div>
       <BillingNote />
 
-      <ul className="mt-7 space-y-3">
+      <ul className="mt-6 space-y-3">
         {tier.features.map((feature) => (
           <li key={feature} className="flex gap-3 text-sm font-semibold text-nocturnal/78">
             <Icon name="chevronUpSolid" className="mt-0.5 h-4 w-4 rotate-90 text-oceanic/70 transition-transform duration-[360ms] group-hover:translate-x-0.5 group-hover:text-oceanic" />
@@ -134,7 +134,7 @@ const PricingCard = memo(function PricingCard({
         ))}
       </ul>
 
-      <ButtonLink href="#cta" variant={tier.highlight ? "primary" : "secondary"} className="mt-8 w-full">
+      <ButtonLink href="#cta" variant={tier.highlight ? "primary" : "secondary"} className="mt-auto pt-6 w-full">
         Choose {tier.name}
         <Icon name="chevronRight" className={cn("h-4 w-4 transition-transform duration-[360ms] group-hover:translate-x-1", tier.highlight ? "invert" : "")} />
       </ButtonLink>
@@ -144,7 +144,7 @@ const PricingCard = memo(function PricingCard({
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-mint/45 px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="pricing-title">
+    <section id="pricing" className="bg-mint/45 px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="pricing-title">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>

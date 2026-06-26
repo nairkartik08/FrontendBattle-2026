@@ -3,7 +3,7 @@ import { testimonials } from "../constants/testimonials";
 
 export function Testimonials() {
   return (
-    <section className="bg-arctic px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="testimonials-title">
+    <section className="bg-arctic px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="testimonials-title">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">

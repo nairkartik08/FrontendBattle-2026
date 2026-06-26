@@ -7,8 +7,8 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="bg-mint/45 px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="faq-title">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+    <section id="faq" className="bg-arctic px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="faq-title">
+      <div className="mx-auto max-w-3xl">
         <div>
           <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-nocturnal/70">FAQ</p>
           <h2 id="faq-title" className="mt-4 font-mono text-3xl font-bold leading-tight text-oceanic sm:text-5xl">
