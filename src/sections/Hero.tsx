@@ -1,5 +1,6 @@
 import { ButtonLink } from "../components/ButtonLink";
 import { Icon } from "../components/Icon";
+import { DataCore3D } from "../components/DataCore3D";
 import { brand } from "../constants/brand";
 
 const metrics = [
@@ -17,7 +18,7 @@ const activity = [
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-arctic pt-16 lg:pt-20" aria-labelledby="hero-title">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-mint/40 via-arctic to-arctic opacity-80" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-mint/40 via-arctic to-arctic opacity-50" />
       <div className="hero-grid relative mx-auto grid min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-16">
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 rounded-[8px] border border-nocturnal/15 bg-white/55 px-3 py-2 text-sm font-bold text-nocturnal shadow-sm backdrop-blur transition-transform hover:scale-105 duration-200">
@@ -58,9 +59,10 @@ export function Hero() {
           <div className="absolute -right-3 bottom-20 hidden h-14 w-14 animate-float-delayed rounded-[8px] bg-saffron p-3 shadow-panel md:block transition-transform hover:scale-110 duration-200">
             <Icon name="cogTooth" className="h-full w-full" />
           </div>
-          <div className="absolute left-1/4 -top-12 hidden h-10 w-10 animate-float-delayed rounded-[8px] bg-mint/80 p-2 shadow-sm md:block opacity-60">
-            <Icon name="cubeSolid" className="h-full w-full" />
-          </div>
+          
+          {/* 3D AI Data Core */}
+          <DataCore3D className="absolute -right-16 -top-16 -z-10 hidden opacity-90 md:block lg:-right-32 lg:-top-24 lg:opacity-100" />
+          
           <div className="hero-panel relative rounded-[8px] border border-white/60 bg-white/62 p-3 shadow-panel backdrop-blur-xl">
             <div className="rounded-[8px] bg-oceanic p-4 text-arctic">
               <div className="flex items-center justify-between border-b border-white/10 pb-4">

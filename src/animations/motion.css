@@ -60,3 +60,54 @@
     transition-duration: 1ms !important;
   }
 }
+
+/* 3D Core Utilities */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.perspective-\[1200px\] {
+  perspective: 1200px;
+}
+
+/* 3D Spin */
+@keyframes spin-slow-3d {
+  0% { transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg); }
+  100% { transform: rotateX(45deg) rotateY(360deg) rotateZ(45deg); }
+}
+.animate-spin-slow-3d {
+  animation: spin-slow-3d 24s linear infinite;
+}
+
+/* Pulse Core */
+@keyframes pulse-core {
+  0%, 100% { transform: scale3d(0.95, 0.95, 0.95); opacity: 0.8; }
+  50% { transform: scale3d(1.05, 1.05, 1.05); opacity: 1; }
+}
+.animate-pulse-core {
+  animation: pulse-core 4s ease-in-out infinite;
+}
+
+/* Orbit Particles */
+@keyframes orbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateZ(120px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateZ(120px) rotate(-360deg); }
+}
+.animate-orbit-1 { animation: orbit 8s linear infinite; }
+.animate-orbit-2 { animation: orbit 12s linear infinite reverse; }
+
+/* Cube Faces */
+.face-front  { transform: rotateY(0deg) translateZ(80px); }
+.face-back   { transform: rotateY(180deg) translateZ(80px); }
+.face-right  { transform: rotateY(90deg) translateZ(80px); }
+.face-left   { transform: rotateY(-90deg) translateZ(80px); }
+.face-top    { transform: rotateX(90deg) translateZ(80px); }
+.face-bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+@media (max-width: 639px) {
+  .face-front  { transform: rotateY(0deg) translateZ(60px); }
+  .face-back   { transform: rotateY(180deg) translateZ(60px); }
+  .face-right  { transform: rotateY(90deg) translateZ(60px); }
+  .face-left   { transform: rotateY(-90deg) translateZ(60px); }
+  .face-top    { transform: rotateX(90deg) translateZ(60px); }
+  .face-bottom { transform: rotateX(-90deg) translateZ(60px); }
+}
